@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Nạp tiền</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+text-align:center;
+font-family:Arial;
+}
+
+.box{
+margin-top:100px;
+}
+
+button{
+padding:15px;
+margin:10px;
+font-size:18px;
+cursor:pointer;
+background:#00c3ff;
+border:none;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>Nạp tiền</h1>
+
+<button onclick="nap(50)">Nạp 50</button>
+<button onclick="nap(100)">Nạp 100</button>
+<button onclick="nap(500)">Nạp 500</button>
+
+<br><br>
+
+<button onclick="back()">Quay lại</button>
+
+</div>
+
+<script>
+
+let user=localStorage.getItem("login")
+
+function nap(tien){
+
+let money=Number(localStorage.getItem("money_"+user))
+
+money+=tien
+
+localStorage.setItem("money_"+user,money)
+
+alert("Nạp thành công")
+
+}
+
+function back(){
+
+window.location="game.html.html"
+
+}
+
+</script>
+
+</body>
+</html>

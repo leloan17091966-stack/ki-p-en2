@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Casino Spin</title>
+
+<style>
+
+body{
+background:#0e0e0e;
+color:white;
+text-align:center;
+font-family:Arial;
+}
+
+.topbar{
+background:#111;
+padding:10px;
+}
+
+.slot{
+display:flex;
+justify-content:center;
+margin-top:50px;
+}
+
+.box{
+width:100px;
+height:100px;
+background:#222;
+margin:10px;
+font-size:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:10px;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+font-size:18px;
+cursor:pointer;
+background:#00b7ff;
+border:none;
+color:white;
+border-radius:5px;
+}
+
+.menu{
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<span id="user"></span>
+|
+💰 <span id="money"></span>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+<h1>🎰 Casino Spin</h1>
+
+<div class="slot">
+
+<div class="box" id="s1">?</div>
+<div class="box" id="s2">?</div>
+<div class="box" id="s3">?</div>
+
+</div>
+
+<button onclick="spin()">QUAY</button>
+
+<div class="menu">
+
+<button onclick="nap()">Nạp tiền</button>
+<button onclick="shop()">Shop</button>
+<button onclick="rank()">Bảng xếp hạng</button>
+
+</div>
+
+<script>
+
+let user=localStorage.getItem("login")
+
+if(!user){
+
+window.location="dangky.html.html"
+
+}
+
+document.getElementById("user").innerText=user
+
+function getMoney(){
+
+return Number(localStorage.getItem("money_"+user))
+
+}
+
+function setMoney(m){
+
+localStorage.setItem("money_"+user,m)
+update()
+
+}
+
+function update(){
+
+document.getElementById("money").innerText=getMoney()
+
+}
+
+update()
+
+function spin(){
+
+let money=getMoney()
+
+if(money<5){
+alert("Không đủ tiền")
+return
+}
+
+money-=5
+
+let arr=["🍒","💎","7️⃣","🍀"]
+
+let r1=arr[Math.floor(Math.random()*arr.length)]
+let r2=arr[Math.floor(Math.random()*arr.length)]
+let r3=arr[Math.floor(Math.random()*arr.length)]
+
+document.getElementById("s1").innerText=r1
+document.getElementById("s2").innerText=r2
+document.getElementById("s3").innerText=r3
+
+if(r1==r2 && r2==r3){
+
+money+=50
+alert("JACKPOT +50")
+
+}
+
+setMoney(money)
+
+}
+
+function nap(){
+
+window.location="nap.html.html"
+
+}
+
+function shop(){
+
+alert("Shop đang phát triển")
+
+}
+
+function rank(){
+
+alert("Bảng xếp hạng đang phát triển")
+
+}
+
+function logout(){
+
+localStorage.removeItem("login")
+location.reload()
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Đăng nhập</title>
+
+<style>
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+padding-top:100px;
+}
+
+.box{
+background:#1e293b;
+padding:30px;
+width:300px;
+margin:auto;
+border-radius:10px;
+}
+
+input{
+width:90%;
+padding:10px;
+margin:10px;
+border:none;
+border-radius:5px;
+}
+
+button{
+padding:10px 20px;
+background:#22c55e;
+border:none;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Đăng nhập</h2>
+
+<input id="user" placeholder="Tên tài khoản">
+<input id="pass" type="password" placeholder="Mật khẩu">
+
+<button onclick="login()">Đăng nhập</button>
+
+<h3>Đăng ký</h3>
+
+<input id="user2" placeholder="Tạo tài khoản">
+<input id="pass2" type="password" placeholder="Tạo mật khẩu">
+
+<button onclick="register()">Đăng ký</button>
+
+</div>
+
+<script>
+
+let users=JSON.parse(localStorage.getItem("users"))||[];
+
+function register(){
+
+let u=user2.value;
+let p=pass2.value;
+
+users.push({user:u,pass:p,money:0});
+
+localStorage.setItem("users",JSON.stringify(users));
+
+alert("Đăng ký thành công");
+
+}
+
+function login(){
+
+let u=user.value;
+let p=pass.value;
+
+let acc=users.find(x=>x.user==u && x.pass==p);
+
+if(acc){
+
+localStorage.setItem("login",u);
+
+location="game.html.html";
+
+}else{
+
+alert("Sai tài khoản");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
